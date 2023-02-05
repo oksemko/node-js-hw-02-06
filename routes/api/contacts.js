@@ -1,10 +1,11 @@
-const { json } = require("express");
+// const { json } = require("express");
 const express = require("express");
+const CreateError = require("http-errors");
 const Joi = require("joi");
 
 const contactsOperations = require("../../models/contacts");
 
-const contactsShema = Joi.object({
+const contactShema = Joi.object({
   name: Joi.string()
     .min(3)
     .pattern(/^[a-zA-Z]+$/)
@@ -40,15 +41,48 @@ router.get("/:contactId", async (req, res, next) => {
 });
 
 router.post("/", async (req, res, next) => {
-  res.json({ message: "template message" });
+  try {
+    const { error } = contactShema.validate(req.body);
+    if (error) {
+      throw new CreateError(400, error.message);
+    }
+    const body = req.body;
+    const newContact = await contactsOperations.addContact(body);
+    res.status(201).json(newContact);
+  } catch (error) {
+    next(error);
+  }
 });
 
 router.delete("/:contactId", async (req, res, next) => {
-  res.json({ message: "template message" });
+  try {
+    const { contactId: id } = req.params;
+    const contact = await contactsOperations.removeContact(id);
+    if (!contact) {
+      throw new CreateError(404, "Not found");
+    }
+    res.json({ message: "Contact deleted" });
+  } catch (error) {
+    next(error);
+  }
 });
 
 router.put("/:contactId", async (req, res, next) => {
-  res.json({ message: "template message" });
+  try {
+    const { error } = contactShema.validate(req.body);
+    if (error) {
+      throw new CreateError(400, error.message);
+    }
+    const { contactId: id } = req.params;
+    const body = req.body;
+    const contact = await contactsOperations.updateContact(id, body);
+    if (!contact) {
+      throw new CreateError(404, "Not found");
+    }
+    res.json(contact);
+  } catch (error) {
+    next(error);
+  }
 });
 
 module.exports = router;
