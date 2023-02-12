@@ -1,7 +1,7 @@
 // const { writeFile } = require("fs");
 const fs = require("fs/promises");
 const path = require("path");
-// const { v4 } = require("uuid"); //Used uuid instead of nanoid  (nanoid does not support commonJs, only ES modules)
+const { v4 } = require("uuid"); //Used uuid instead of nanoid  (nanoid does not support commonJs, only ES modules)
 
 const contactsPath = path.join(__dirname, "../models/contacts.json");
 
@@ -34,9 +34,11 @@ const removeContact = async (contactId) => {
 
 const addContact = async ({ name, email, phone }) => {
   const contacts = await listContacts();
-  const id = require("uuid").uuid();
-  const newContact = { id, name, email, phone };
+  // const id = require("uuid").uuid();
+  const newContact = { id: v4(), name, email, phone };
   const newContacts = JSON.stringify([...contacts, newContact], null, 2);
+
+  contacts.push(newContact);
 
   await fs.writeFile(contactsPath, newContacts);
   return newContact;
