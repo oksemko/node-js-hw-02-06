@@ -1,7 +1,6 @@
-// const { json } = require("express");
 const express = require("express");
 const controllers = require("../../controllers/contacts");
-const { schemas } = require("../../contactShema/contacts");
+const { schemas } = require("../../models/contact");
 const {
   controllerWrapper,
   validation,
