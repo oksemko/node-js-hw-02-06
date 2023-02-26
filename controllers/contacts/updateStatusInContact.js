@@ -1,5 +1,5 @@
 const { Contact } = require("../../models/contact");
-const { createError } = require("../../helpers");
+const { CreateError } = require("../../helpers");
 
 const updateStatusInContact = async (req, res) => {
   const { contactId: id } = req.params;
@@ -7,7 +7,7 @@ const updateStatusInContact = async (req, res) => {
   console.log(favorite);
 
   if (favorite === undefined) {
-    throw new createError(400, "Favorite is undefined");
+    throw new CreateError(400, "favorite is undefined");
   }
 
   const result = await Contact.findByIdAndUpdate(
@@ -19,7 +19,7 @@ const updateStatusInContact = async (req, res) => {
   );
 
   if (!result) {
-    throw new createError(404);
+    throw new CreateError(404);
   }
 
   res.json({
