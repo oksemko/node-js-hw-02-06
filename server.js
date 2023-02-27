@@ -8,14 +8,20 @@ const app = require("./app");
 mongoose.set("strictQuery", true);
 
 const { DB_HOST, PORT = 3000 } = process.env;
-console.log(DB_HOST);
+
+//Connection string into application code:
+// DB_HOST =
+//   "mongodb+srv://nodeuser:<password>@cluster0.d4i3rdp.mongodb.net/db-contacts?retryWrites=true&w=majority";
+//------>>> Don`t forget to replace <password> with the password for the nodeuser user.
 
 mongoose
-  .connect(DB_HOST)
+  .connect(DB_HOST, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
   .then(() => {
-    app.listen(PORT, () => {
-      console.log("Database connection successful");
-    });
+    app.listen(PORT);
+    console.log("Database connection successful");
   })
   .catch((error) => {
     console.log(error.message);
