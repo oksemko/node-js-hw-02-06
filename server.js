@@ -7,7 +7,10 @@ const app = require("./app");
 // for this change. Or use `mongoose.set('strictQuery', true); ---> to suppress this warning.
 mongoose.set("strictQuery", true);
 
-const { DB_HOST, PORT = 3000 } = process.env;
+const {
+  DB_HOST = "mongodb+srv://nodeuser:nodeuser@cluster0.d4i3rdp.mongodb.net/db-contacts?retryWrites=true&w=majority",
+  PORT = 3000,
+} = process.env;
 
 // Connection string into application code:
 // DB_HOST =

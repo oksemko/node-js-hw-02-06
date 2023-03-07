@@ -1,3 +1,6 @@
+// bcrypt is an adaptive function which incorporates a salt
+// to protect against rainbow table attacks
+
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const { User } = require("../../models/user");

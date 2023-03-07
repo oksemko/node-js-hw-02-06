@@ -28,6 +28,7 @@ const contactSchema = Schema(
       type: Boolean,
       default: false,
     },
+    //  User sees only his contacts acc to the property below
     owner: {
       type: Schema.Types.ObjectId,
       ref: "user",
