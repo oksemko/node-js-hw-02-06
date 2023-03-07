@@ -3,7 +3,7 @@ const logger = require("morgan");
 const cors = require("cors");
 
 // express ---> Fast, unopinionated, minimalist web framework for Node.js.
-// morgan ---> HTTP request logger middleware for node.js
+// morgan ---> HTTP request logger middleware for node.js.
 // cors ---> CORS is a node.js package for providing a Connect/Express middleware that can be used to enable CORS with various options.
 
 require("dotenv").config();
