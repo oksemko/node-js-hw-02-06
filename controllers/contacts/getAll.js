@@ -7,7 +7,7 @@ const getAll = async (req, res) => {
 
   let result;
 
-  if (favorite === underfined) {
+  if (favorite === undefined) {
     result = await Contact.find({ owner: _id }, "", {
       skip,
       limit: Number(limit),
