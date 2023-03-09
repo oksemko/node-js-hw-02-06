@@ -21,7 +21,7 @@ router.get(
 router.post(
   "/",
   authenticate,
-  validation(schemas.joiShemaAll),
+  validation(schemas.joiSchemaAll),
   controllerWrapper(controllers.add)
 );
 
@@ -30,7 +30,7 @@ router.delete("/:contactId", controllerWrapper(controllers.removeById));
 router.put(
   "/:contactId",
   isValidParams,
-  validation(schemas.joiShemaAll),
+  validation(schemas.joiSchemaAll),
   controllerWrapper(controllers.updateById)
 );
 
