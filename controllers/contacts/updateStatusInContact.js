@@ -7,7 +7,7 @@ const updateStatusInContact = async (req, res) => {
   console.log(favorite);
 
   if (favorite === undefined) {
-    throw new CreateError(400, "favorite is undefined");
+    throw CreateError(400, "favorite is undefined");
   }
 
   const result = await Contact.findByIdAndUpdate(
@@ -19,7 +19,7 @@ const updateStatusInContact = async (req, res) => {
   );
 
   if (!result) {
-    throw new CreateError(404);
+    throw CreateError(404);
   }
 
   res.json({

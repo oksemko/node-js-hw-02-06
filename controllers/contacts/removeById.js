@@ -6,7 +6,7 @@ const removeById = async (req, res) => {
   const result = await Contact.findByIdAndRemove({ id });
 
   if (!result) {
-    throw new CreateError(404);
+    throw CreateError(404);
   }
 
   res.json({
