@@ -6,9 +6,11 @@ const {
   validation,
   isValidParams,
 } = require("../../helpers");
+const { authenticate } = require("../../middlewares");
+
 const router = express.Router();
 
-router.get("/", controllerWrapper(controllers.getAll));
+router.get("/", authenticate, controllerWrapper(controllers.getAll));
 
 router.get(
   "/:contactId",
@@ -18,6 +20,7 @@ router.get(
 
 router.post(
   "/",
+  authenticate,
   validation(schemas.joiShemaAll),
   controllerWrapper(controllers.add)
 );

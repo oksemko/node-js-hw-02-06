@@ -13,10 +13,10 @@ const contactSchema = Schema(
     },
     email: {
       type: String,
+      required: [true, "Set email for contact"],
       trim: true,
       lowercase: true,
       unique: true,
-      required: [true, "Set email for contact"],
     },
     phone: {
       type: String,
@@ -28,6 +28,11 @@ const contactSchema = Schema(
       type: Boolean,
       default: false,
     },
+    //  User sees only his contacts acc to the property below
+    owner: {
+      type: Schema.Types.ObjectId,
+      ref: "user",
+    },
   },
   { versionKey: false, timestamps: true }
 );
@@ -37,6 +42,7 @@ const joiSchemaAll = Joi.object({
   email: Joi.string().email().trim().required(),
   phone: Joi.string().min(3).required(),
   favorite: Joi.boolean(),
+  owner: Joi.string(),
 });
 
 const joiSchemaFavorite = Joi.object({
