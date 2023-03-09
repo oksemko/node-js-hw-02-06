@@ -1,6 +1,8 @@
 const fs = require("fs/promises");
 const path = require("path");
 const jimp = require("jimp");
+// jimp --->>> An image processing library written entirely
+// in JavaScript(i.e.zero external or native dependencies).
 
 const { User } = require("../../models/user");
 
