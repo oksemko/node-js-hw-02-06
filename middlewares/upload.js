@@ -5,22 +5,21 @@ const multer = require("multer");
 // NOTE: Multer will not process any form which is not multipart (multipart/form-data).
 const path = require("path");
 
-
 const tempDir = path.join(__dirname, "../", "temp");
 
 const multerConfig = multer.diskStorage({
-    destination: tempDir,
-    filename: (req, file, cb) => {
-        cb(null, file.originalname);
-    },
-    limits: {
-        fileSize: 2048,
-    },
+  destination: tempDir,
+  filename: (req, file, cb) => {
+    cb(null, file.originalname);
+    //cb --->>> multer's callback
+  },
+  limits: {
+    fileSize: 2048,
+  },
 });
 
 const upload = multer({
   storage: multerConfig,
 });
-
 
 module.exports = upload;
