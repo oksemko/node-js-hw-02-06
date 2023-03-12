@@ -13,11 +13,12 @@ const getAll = async (req, res) => {
       limit: Number(limit),
     }).populate("owner", "_id email");
   } else {
-    result =
-      (await Contact.find({ owner: _id, favorite }, "", {
+    result = (
+      await Contact.find({ owner: _id, favorite }, "", {
         skip,
         limit: Number(limit),
-      })) / populate("owner", "_id email");
+      })
+    ).populate("owner", "_id email");
   }
 
   res.json({

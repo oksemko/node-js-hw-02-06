@@ -24,6 +24,8 @@ const updateAvatar = async (req, res) => {
     await fs.rename(tempUpload, resultUpload);
 
     const avatarURL = path.join("avatars", imageName);
+    // "avatarURL": "avatars\\640d121a8329d908e57af030_avatar-default.png";
+    //  "avatarURL": "640d121a8329d908e57af030_user_avatar_default.jpg";
     await User.findByIdAndUpdate(req.user._id, { avatarURL });
 
     res.json({ avatarURL });
