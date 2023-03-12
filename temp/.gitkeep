@@ -1,0 +1,3 @@
+.gitkeep is an empty folder needs to be tracked via Git.
+
+The name of the dummy file may not always be .gitkeep but you'll see the actual practice over and over again as a developer.
