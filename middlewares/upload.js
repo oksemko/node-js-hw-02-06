@@ -11,7 +11,7 @@ const multerConfig = multer.diskStorage({
   destination: tempDir,
   filename: (req, file, cb) => {
     cb(null, file.originalname);
-    //cb --->>> multer's callback
+    // cb --->>> multer's callback
   },
   limits: {
     fileSize: 2048,
