@@ -27,7 +27,7 @@ const signup = async (req, res) => {
   });
 
   const mail = {
-    to: mail,
+    to: email,
     subject: "Website registration confirmation",
     html: `<a target='_blank' href="http://localhost:3000/api/users/verify/${verificationToken}">Click to confirm</a>`,
   };
