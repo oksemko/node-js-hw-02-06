@@ -3,7 +3,6 @@ const path = require("path");
 const jimp = require("jimp");
 // jimp --->>> An image processing library written entirely
 // in JavaScript(i.e.zero external or native dependencies).
-
 const { User } = require("../../models/user");
 
 const avatarDir = path.join(__dirname, "../../", "public", "avatars");
@@ -25,7 +24,7 @@ const updateAvatar = async (req, res) => {
 
     const avatarURL = path.join("avatars", imageName);
     // "avatarURL": "avatars\\640d121a8329d908e57af030_avatar-default.png";
-    //  "avatarURL": "640d121a8329d908e57af030_user_avatar_default.jpg";
+    // "avatarURL": "avatars\\640d121a8329d908e57af030_user_avatar_default.jpg";
     await User.findByIdAndUpdate(req.user._id, { avatarURL });
 
     res.json({ avatarURL });

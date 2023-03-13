@@ -35,7 +35,7 @@ router.put(
 );
 
 router.patch(
-  "/:contactId",
+  "/:contactId/favorite",
   isValidParams,
   validation(schemas.joiSchemaFavorite),
   controllerWrapper(controllers.updateStatusInContact)
